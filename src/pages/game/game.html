@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons end>
+        <button ion-button icon-only clear large (click)="checkHints($event)">
+            <ion-icon name="help-buoy"></ion-icon>
+            <ion-badge id="help-badge" color="danger">{{numHint}}</ion-badge>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div style="text-align:right">
+    <button id="help-btn" ion-button icon-only clear large (click)="checkHints($event)">
+        <ion-icon name="help-buoy"></ion-icon>
+        <ion-badge id="help-badge" color="danger">{{numHint}}</ion-badge>
+    </button>
+  </div>
+  <div [hidden]="crossWord">
+  </div>
+  <div [hidden]="numberPyramid">
+    <ion-list>
+      <ion-grid>
+        <ion-row justify-content-center *ngFor="let row of numberPyramidData; let rowIndex = index">
+          <ion-col col-3 align-self-center *ngFor="let col of row; let colIndex = index" [style.backgroundColor]="col.backgroundColor">
+            <ion-label *ngIf="(col.hint===0)" [color]="col.color"  text-center>{{col.data}}</ion-label>
+            <ion-input maxlength="3" *ngIf="(col.hint!==0)" [color]="col.color" text-center [placeholder]="col.placeholder" type="tel" (ionBlur)="valChange($event, row, col, rowIndex, colIndex)" [(ngModel)]="numberPyramidData[rowIndex][colIndex].actualInput"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+    <button ion-button large (click)="printNewArray()">Check Values</button>
+  </div>
+  <div [hidden]="numberSudoku">
+  </div>
+  <div [hidden]="pictureSudoku">
+  </div>
+</ion-content>

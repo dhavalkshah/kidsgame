@@ -1,0 +1,8 @@
+<!-- Generated template for the HintComponent component -->
+<div>
+    <ion-list>
+        <ion-item *ngFor="let item of hintList" (click)="hintAction(item.action)">
+          {{item.name}}
+        </ion-item>
+      </ion-list>
+</div>
